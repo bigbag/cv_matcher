@@ -1,0 +1,47 @@
+[project]
+name = "resume-matcher"
+version = "0.1.0"
+description = "Match resumes against job descriptions using AI"
+authors = ["Your Name <your.email@example.com>"]
+requires-python = ">=3.9"
+dependencies = [
+    "click>=8.1.7",
+    "pydantic-ai>=0.0.14",
+    "pydantic-settings>=2.7.0",
+    "request-id-helper>=0.2.0",
+    "pypdf2>=3.0.1",
+    "markitdown>=0.0.1a1",
+    "rich>=13.9.4",
+    "fastapi>=0.115.6",
+    "python-multipart>=0.0.20",
+    "uvicorn>=0.34.0",
+    "starlette-request-id>=1.2.1",
+    "starlette-exporter>=0.23.0",
+    "uvloop>=0.21.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pyclean>=3.0",
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "flake8>=7.1",
+    "mypy>=1.13",
+    "black>=24.10",
+    "isort>=5.13",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    ".",
+    "src"
+]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+skip-string-normalization = true
+include = '\.pyi?$'
+exclude = 'build\/|buck-out\/|dist\/|_build\/|.git\/|.hg\/|.mypy_cache\/|.tox\/|.venv\/|migrations\/'
