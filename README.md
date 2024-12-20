@@ -132,13 +132,26 @@ make sys/tag
 
 ```
 .
-├── src/           # Source code
-├── tests/         # Test files
-├── examples/      # Example files
-├── Dockerfile     # Docker configuration
-├── Makefile      # Build and management commands
-├── pyproject.toml # Python project configuration
-└── setup.cfg      # Setup configuration
+├── src/                    # Source code
+│   ├── analysis.py        # Core analysis logic
+│   ├── client.py          # Client implementation
+│   ├── conf.py            # Configuration management
+│   ├── entities.py        # Data models and entities
+│   ├── interfaces.py      # Interface definitions
+│   ├── logger.py          # Logging configuration
+│   ├── manage.py          # Management commands
+│   ├── promts.py         # Prompt templates and definitions
+│   ├── routers.py        # API route handlers
+│   ├── server.py         # Server implementation
+│   └── services.py       # Business logic services
+├── tests/                 # Test files
+├── cache/                 # Cache directory
+├── Dockerfile            # Docker configuration
+├── Makefile             # Build and management commands
+├── LICENSE              # Apache 2.0 license
+├── README.md            # Project documentation
+├── pyproject.toml       # Python project configuration
+├── tests_description.md # Detailed test documentation
 ```
 
 ## License
