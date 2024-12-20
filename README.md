@@ -1,160 +1,109 @@
 # CV Matcher
 
-A tool for analyzing and matching resumes with job descriptions.
+An intelligent system for matching job descriptions with candidate CVs/resumes using advanced text analysis and machine learning algorithms.
 
-## Overview
+## Features
 
-CV Matcher is a Python-based application that helps analyze resumes and match them against job descriptions. It provides both CLI and server-based interfaces for resume analysis.
+- Parse and analyze CVs in PDF and DOCX formats
+- Extract key information from job descriptions
+- Smart matching algorithm using ML/AI
+- REST API for integration
+- Scoring and ranking system
+- Candidate management
+- Job posting management
 
-## Requirements
+## Prerequisites
 
-- Python 3.x
-- Docker (optional, for containerized deployment)
-- Make
+- Python 3.11+
+- PostgreSQL
+- Docker (optional)
 
-## Installation
+## Quick Start
 
-### Local Setup
-
-1. Create a virtual environment:
+1. Clone the repository:
 ```bash
-make venv/create
+git clone https://github.com/yourusername/cv_matcher.git
+cd cv_matcher
 ```
 
-2. Install dependencies:
-- For main dependencies only:
+2. Set up a virtual environment:
 ```bash
-make venv/install/main
-```
-- For all dependencies (including test dependencies):
-```bash
-make venv/install/all
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-### Docker Setup
-
-1. Build the Docker image:
+3. Install dependencies:
 ```bash
-make docker/build/server
+pip install -r requirements.txt
+```
+
+4. Set up environment variables:
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
+
+5. Initialize the database:
+```bash
+alembic upgrade head
+```
+
+6. Run the application:
+```bash
+uvicorn src.main:app --reload
+```
+
+The API will be available at `http://localhost:8000`
+
+## Docker Setup
+
+1. Build the image:
+```bash
+docker build -t cv_matcher .
 ```
 
 2. Run the container:
 ```bash
-make docker/run/server
+docker run -p 8000:8000 --env-file .env cv_matcher
 ```
 
-## Usage
+## API Documentation
 
-### Analyzing Resume and Job Description
-
-```bash
-make analyze RESUME_PATH=/path/to/resume JOB_DESC_PATH=/path/to/job_description
-```
-
-### Running the Server
-
-```bash
-make run/server
-```
-
-## Web API Endpoints
-
-### Health Check
-```http
-GET /ping
-```
-Returns a simple health check response to verify the server is running.
-
-### Resume Analysis
-```http
-POST /analyze_resume
-```
-Analyze a resume against a job description.
-
-**Request Body (multipart/form-data):**
-- `resume_file`: Resume file upload
-- `job_description_file`: Job description file upload
-
-**Response:** Detailed match result including:
-- Match score
-- Analysis details
+Once the application is running, visit:
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
 
 ## Development
 
-### Testing
-For detailed information about the testing approach, types of tests, and examples, see [Test Documentation](tests_description.md).
-
-### Code Quality
-
-- Run all linters:
+1. Install development dependencies:
 ```bash
-make lint
+pip install -r requirements-dev.txt
 ```
 
-- Format code:
+2. Run tests:
 ```bash
-make format
+pytest
 ```
 
-- Run tests:
+3. Check code style:
 ```bash
-make test
+flake8
+black .
 ```
 
-### Available Linters
+## Contributing
 
-- Black (code formatting)
-- Flake8 (style guide enforcement)
-- isort (import sorting)
-- mypy (static type checking)
-- yamllint (YAML file linting)
-
-### Cleaning
-
-To clean temporary files and caches:
-```bash
-make clean
-```
-
-### Version Control
-
-- Generate changelog:
-```bash
-make sys/changelog
-```
-
-- Create and push a new tag:
-```bash
-make sys/tag
-```
-
-## Project Structure
-
-```
-.
-├── src/                    # Source code
-│   ├── analysis.py        # Core analysis logic
-│   ├── client.py          # Client implementation
-│   ├── conf.py            # Configuration management
-│   ├── entities.py        # Data models and entities
-│   ├── interfaces.py      # Interface definitions
-│   ├── logger.py          # Logging configuration
-│   ├── manage.py          # Management commands
-│   ├── promts.py         # Prompt templates and definitions
-│   ├── routers.py        # API route handlers
-│   ├── server.py         # Server implementation
-│   └── services.py       # Business logic services
-├── tests/                 # Test files
-├── cache/                 # Cache directory
-├── Dockerfile            # Docker configuration
-├── Makefile             # Build and management commands
-├── LICENSE              # Apache 2.0 license
-├── README.md            # Project documentation
-├── pyproject.toml       # Python project configuration
-├── tests_description.md # Detailed test documentation
-```
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-cv-matcher is developed and distributed under the Apache 2.0 license.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support, please open an issue in the GitHub repository or contact the maintainers.
 
