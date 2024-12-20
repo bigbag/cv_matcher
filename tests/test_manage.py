@@ -1,13 +1,9 @@
-from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from click.testing import CliRunner
 
-from src.client import AIClient
-from src.entities import ModelType
-from src.manage import analyze, cli
-from src.services import ResumeAnalysisService
+from src.manage import cli
 
 
 @pytest.fixture

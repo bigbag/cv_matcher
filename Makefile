@@ -25,10 +25,8 @@ UV = $(VENV)/bin/uv
 PYCLEAN = $(VENV)/bin/pyclean
 PYTEST = $(VENV)/bin/pytest
 
-PYTHONPATH := $(or ${PYTHONPATH},${PYTHONPATH},.)
-
 export UV_LINK_MODE=copy
-export ${PYTHONPATH}
+export export PYTHONPATH=.
 
 #################################################################################
 # DEVELOPMENT ENVIRONMENT                                                        #
@@ -65,7 +63,6 @@ analyze:
 ## Start server
 run/server:
 	@echo "Running server"
-	PYTHONPATH=${PYTHONPATH} \
 	$(PYTHON) ${PROJECT_PATH}/manage.py start-server
 
 #################################################################################
@@ -85,27 +82,32 @@ docker/run/server:
 #################################################################################
 
 ## Run all linters
-lint: lint/black lint/flake8 lint/isort
+lint: lint/black lint/flake8 lint/isort lint/bandit
 
 lint/black:
-	@echo "\033[92m< Linting using black...\033[0m"
+	@echo "Linting using black..."
 	$(PYTHON) -m black --check --diff $(LINT_SOURCES_PATHS)
-	@echo "\033[92m> Done\033[0m"
+	@echo "Done"
 
 lint/flake8:
-	@echo "\033[92m< Linting using flake8...\033[0m"
+	@echo "Linting using flake8..."
 	$(PYTHON) -m flake8 $(LINT_SOURCES_PATHS)
-	@echo "\033[92m> Done\033[0m"
+	@echo "Done"
 
 lint/isort:
-	@echo "\033[92m< Linting using isort...\033[0m"
+	@echo "Linting using isort..."
 	$(PYTHON) -m isort --check-only --diff $(LINT_SOURCES_PATHS)
-	@echo "\033[92m> Done\033[0m"
+	@echo "Done"
+
+lint/bandit:
+	@echo "Linting using bandit..."
+	$(PYTHON) -m bandit -r $(PROJECT_PATH)
+	@echo "Done"
 
 lint/mypy:
-	@echo "\033[92m< Linting using mypy...\033[0m"
+	@echo "Linting using mypy..."
 	$(PYTHON) -m mypy --show-error-codes --skip-cache-mtime-checks $(LINT_SOURCES_PATHS)
-	@echo "\033[92m> Done\033[0m"
+	@echo "Done"
 
 lint/yamllint:
 	@echo "Linting YAML files"
@@ -113,10 +115,10 @@ lint/yamllint:
 
 ## Format source code
 format:
-	@echo "\033[92m< Formatting code...\033[0m"
+	@echo "Formatting code..."
 	$(PYTHON) -m black $(LINT_SOURCES_PATHS)
 	$(PYTHON) -m isort $(LINT_SOURCES_PATHS)
-	@echo "\033[92m> Done\033[0m"
+	@echo "Done"
 
 ## Run all tests
 test:

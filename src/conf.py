@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     app_id: str = "cv-matcher-service"
     app_name: str = "cv matcher service"
-    app_host: str = "0.0.0.0"
+    app_host: str = "0.0.0.0"  # nosec: B104
     app_port: int = 8000
     app_worker_count: int = 1
     app_limit_concurrency: int = 100
@@ -14,8 +14,6 @@ class Settings(BaseSettings):
     docs_enable: bool = True
     debug: bool = False
     log_level: str = "INFO"
-
-    database_url: str = ""
 
     cache_dir: str = "cache"
 
