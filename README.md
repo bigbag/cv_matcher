@@ -9,95 +9,89 @@ An intelligent system for matching job descriptions with candidate CVs/resumes u
 - Smart matching algorithm using ML/AI
 - REST API for integration
 - Scoring and ranking system
-- Candidate management
-- Job posting management
 
 ## Prerequisites
 
-- Python 3.11+
-- PostgreSQL
+- Python 3.12+
 - Docker (optional)
 
 ## Quick Start
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/cv_matcher.git
+git clone https://github.com/bigbag/cv_matcher.git
 cd cv_matcher
 ```
 
-2. Set up a virtual environment:
+2. Set up a virtual environment and install dependencies:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+make venv/create
+make venv/install/all
 ```
 
-3. Install dependencies:
+3. Set up environment variables:
 ```bash
-pip install -r requirements.txt
+cp env.example .local_env
+# Edit .local_env with your configuration
 ```
 
-4. Set up environment variables:
+4. Run the application:
 ```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
-
-5. Initialize the database:
-```bash
-alembic upgrade head
-```
-
-6. Run the application:
-```bash
-uvicorn src.main:app --reload
+make run/server
 ```
 
 The API will be available at `http://localhost:8000`
+
+## Using the Analyzer
+
+To analyze a resume against a job description, use the following command:
+```bash
+make analyze RESUME_PATH=/path/to/resume.pdf JOB_DESC_PATH=/path/to/job.pdf
+```
+
+This command will:
+- Parse and analyze the provided resume
+- Extract requirements from the job description
+- Generate a matching score and detailed analysis
 
 ## Docker Setup
 
 1. Build the image:
 ```bash
-docker build -t cv_matcher .
+make docker/build/server
 ```
 
 2. Run the container:
 ```bash
-docker run -p 8000:8000 --env-file .env cv_matcher
+make docker/run/server
 ```
 
 ## API Documentation
 
 Once the application is running, visit:
 - Swagger UI: `http://localhost:8000/docs`
-- ReDoc: `http://localhost:8000/redoc`
 
 ## Development
 
-1. Install development dependencies:
+1. Format code:
 ```bash
-pip install -r requirements-dev.txt
+make format
 ```
 
-2. Run tests:
+2. Run linters:
 ```bash
-pytest
+make lint
 ```
 
-3. Check code style:
+3. Run tests:
 ```bash
-flake8
-black .
+make test
 ```
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+4. Clean up temporary files and caches:
+```bash
+make clean
+```
 
 ## License
 
