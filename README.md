@@ -81,6 +81,9 @@ Analyze a resume against a job description.
 
 ## Development
 
+### Testing
+For detailed information about the testing approach, types of tests, and examples, see [Test Documentation](tests_description.md).
+
 ### Code Quality
 
 - Run all linters:

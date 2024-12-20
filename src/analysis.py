@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
@@ -123,9 +124,8 @@ class CriteriaEvaluator:
 
     def _parse_score(self, response: str, criterion_name: str) -> int:
         try:
-            score = int(''.join(filter(str.isdigit, response)))
-            return max(0, min(100, score))
-        except ValueError:
+            return max(0, min(100, int(re.findall(r'-?\d+', response)[0])))
+        except (IndexError, ValueError):
             logger.error(f"Could not parse score from response for {criterion_name}: {response}")
             return 0
 

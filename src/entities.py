@@ -67,7 +67,5 @@ class DetailedMatchResult(BaseModel):
     overall_score: int = Field(ge=0, le=100)
     criteria_scores: List[ScoringCriterion]
     match_reasons: str
-    website: str
     red_flags: Dict[str, List[str]]
-    email_subject: Optional[str] = None
-    email_body: Optional[str] = None
+    website: Optional[str] = None

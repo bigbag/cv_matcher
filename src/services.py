@@ -109,12 +109,3 @@ class ResumeAnalysisService:
                 red_flags_table.add_row(category, "\n".join(f"• {flag}" for flag in flags))
 
             self.console.print(red_flags_table)
-
-        # Display email information if available
-        if result.email_subject and result.email_body:
-            self.console.print(
-                Panel.fit(
-                    Text.from_markup(f"[bold]Subject:[/bold] {result.email_subject}\n\n{result.email_body}"),
-                    title="Suggested Email",
-                )
-            )

@@ -34,7 +34,6 @@ export ${PYTHONPATH}
 # DEVELOPMENT ENVIRONMENT                                                        #
 #################################################################################
 
-.PHONY: venv/create venv/install/main venv/install/asa_auth venv/install/all
 ## Create virtual environment
 venv/create: 
 	@echo "Creating virtual environment..."
@@ -85,28 +84,27 @@ docker/run/server:
 # QUALITY ASSURANCE                                                             #
 #################################################################################
 
-.PHONY: lint lint/black lint/flake8 lint/isort lint/mypy lint/yamllint format test
 ## Run all linters
 lint: lint/black lint/flake8 lint/isort
 
 lint/black:
 	@echo "\033[92m< Linting using black...\033[0m"
-	$(PYTHON) -m black --check --diff $(PROJECT_PATH) $(ASA_AUTH_PATH)
+	$(PYTHON) -m black --check --diff $(LINT_SOURCES_PATHS)
 	@echo "\033[92m> Done\033[0m"
 
 lint/flake8:
 	@echo "\033[92m< Linting using flake8...\033[0m"
-	$(PYTHON) -m flake8 $(PROJECT_PATH) $(ASA_AUTH_PATH)
+	$(PYTHON) -m flake8 $(LINT_SOURCES_PATHS)
 	@echo "\033[92m> Done\033[0m"
 
 lint/isort:
 	@echo "\033[92m< Linting using isort...\033[0m"
-	$(PYTHON) -m isort --check-only --diff $(PROJECT_PATH) $(ASA_AUTH_PATH)
+	$(PYTHON) -m isort --check-only --diff $(LINT_SOURCES_PATHS)
 	@echo "\033[92m> Done\033[0m"
 
 lint/mypy:
 	@echo "\033[92m< Linting using mypy...\033[0m"
-	$(PYTHON) -m mypy --show-error-codes --skip-cache-mtime-checks $(PROJECT_PATH) $(ASA_AUTH_PATH)
+	$(PYTHON) -m mypy --show-error-codes --skip-cache-mtime-checks $(LINT_SOURCES_PATHS)
 	@echo "\033[92m> Done\033[0m"
 
 lint/yamllint:
@@ -116,8 +114,8 @@ lint/yamllint:
 ## Format source code
 format:
 	@echo "\033[92m< Formatting code...\033[0m"
-	$(PYTHON) -m black $(PROJECT_PATH) $(ASA_AUTH_PATH)
-	$(PYTHON) -m isort $(PROJECT_PATH) $(ASA_AUTH_PATH)
+	$(PYTHON) -m black $(LINT_SOURCES_PATHS)
+	$(PYTHON) -m isort $(LINT_SOURCES_PATHS)
 	@echo "\033[92m> Done\033[0m"
 
 ## Run all tests
@@ -125,10 +123,9 @@ test:
 	LOG_LEVEL=ERROR \
 	PYTHONPATH=${PYTHONPATH} \
 	$(UV) run \
-	$(PYTEST) --disable-warnings $(TEST_DIR) $(PROJECT_PATH) -x -s --cov-report=term-missing --cov-config=setup.cfg --cov=rate_limiter
+	$(PYTEST) --disable-warnings $(TEST_DIR) $(PROJECT_PATH) -x -s --cov-report=term-missing --cov-config=setup.cfg --cov=src
 
 
-.PHONY: clean sys/changelog sys/tag
 ## Clear temporary information
 clean:  
 	@echo "Clearing cache directories..."
