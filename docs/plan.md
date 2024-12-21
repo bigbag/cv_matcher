@@ -56,6 +56,92 @@ cv_matcher/
    - Manage candidates
    - Manage job postings
 
+## Project Class Diagram
+```mermaid
+classDiagram
+    class AIClient {
+        -_model
+        -_model_settings
+        -_cache_dir
+        +run(prompt, max_tokens, system_prompt, result_type, use_cache)
+    }
+
+    class ResumeAnalysisService {
+        -client: AIClient
+        -analyzer: JobAnalyzer
+        -markitdown: MarkItDown
+        -console: Console
+        +process_files(resume_path, job_desc_path)
+        +analyze_resume(resume_text, job_description)
+        +show_analysis_result(result)
+    }
+
+    class JobAnalyzer {
+        -client: AIClient
+        -_resume_processor: ResumeProcessor
+        -_criteria_evaluator: CriteriaEvaluator
+        -_red_flag_analyzer: RedFlagAnalyzer
+        +unify_resume(resume_text)
+        +extract_job_requirements(job_description)
+        +match_resume(resume_text, job_description, job_requirements)
+    }
+
+    class ResumeProcessor {
+        -client: AIClient
+        +unify_resume(resume_text)
+        +get_website(resume_text)
+    }
+
+    class CriteriaEvaluator {
+        -client: AIClient
+        +evaluate_criterion(criterion, resume_text, job_requirements)
+    }
+
+    class RedFlagAnalyzer {
+        +analyze(criteria)
+    }
+
+    class DetailedMatchResult {
+        +overall_score: int
+        +criteria_scores: List[ScoringCriterion]
+        +match_reasons: str
+        +red_flags: Dict[str, List[str]]
+        +website: Optional[str]
+    }
+
+    class ScoringCriterion {
+        +name: str
+        +key: str
+        +weight: int
+        +description: str
+        +factors: List[str]
+        +score: Optional[int]
+    }
+
+    class JobRequirements {
+        +required_experience_years: int
+        +required_education_level: str
+        +required_skills: List[str]
+        +optional_skills: List[str]
+        +certifications_preferred: List[str]
+        +soft_skills: List[str]
+        +keywords_to_match: List[str]
+        +location: Location
+        +emphasis: Emphasis
+    }
+
+    ResumeAnalysisService --> AIClient
+    ResumeAnalysisService --> JobAnalyzer
+    JobAnalyzer --> ResumeProcessor
+    JobAnalyzer --> CriteriaEvaluator
+    JobAnalyzer --> RedFlagAnalyzer
+    JobAnalyzer --> AIClient
+    ResumeProcessor --> AIClient
+    CriteriaEvaluator --> AIClient
+    JobAnalyzer ..> DetailedMatchResult
+    JobAnalyzer ..> JobRequirements
+    DetailedMatchResult --> ScoringCriterion
+```
 ## Implementation Plan
 
 ### Phase 1: Setup and Basic Structure
