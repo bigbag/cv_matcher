@@ -15,6 +15,15 @@ An intelligent system for matching job descriptions with candidate CVs/resumes u
 - Python 3.12+
 - Docker (optional)
 
+## Documentation
+
+- [Project Plan](docs/plan.md) - Development roadmap and milestones
+- [CI/CD Strategy](docs/cd_strategy.md) - Continuous Deployment strategy
+- [CI/CD](docs/cicd.md) - Continuous Integration and Deployment setup
+- [Tests Description](docs/tests_description.md) - Overview of the testing methodology and framework
+- [Test Cases](docs/test_cases.md) - Detailed test cases and scenarios
+
+
 ## Quick Start
 
 1. Clone the repository:
