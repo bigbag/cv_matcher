@@ -1,64 +1,64 @@
 Analyzing resume and job description...
 /mnt/data/tmp/bigbag/dev/cv_matcher/.venv/bin/python src/manage.py analyze --resume_path=tests/examples/test_resume.pdf --job_desc_path=tests/examples/job_description.txt
 ╭──────────────────────────────────────────────────── Resume Analysis Result ────────────────────────────────────────────────────╮
-│ Overall Match Score: 72%                                                                                                       │
+│ Overall Match Score: 73%                                                                                                       │
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
                                     Detailed Scoring Criteria                                     
 ┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Criterion            ┃ Score ┃ Weight ┃ Description                                            ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│ Language Proficiency │   50% │     5% │ Evaluate candidate's proficiency in required languages │
+│ Language Proficiency │    0% │     5% │ Evaluate candidate's proficiency in required languages │
 │ Education Level      │   90% │     5% │ Evaluate candidate's education level and relevance     │
 │ Experience           │   75% │    15% │ Evaluate years and quality of experience               │
-│ Technical Skills     │   70% │    60% │ Evaluate technical skills match                        │
-│ Certifications       │   50% │     5% │ Evaluate relevant certifications                       │
+│ Technical Skills     │   75% │    60% │ Evaluate technical skills match                        │
+│ Certifications       │   70% │     5% │ Evaluate relevant certifications                       │
 │ Soft Skills          │   85% │    20% │ Evaluate demonstrated soft skills                      │
 └──────────────────────┴───────┴────────┴────────────────────────────────────────────────────────┘
 ╭──────────────────────────────────────────────────────── Match Reasons ─────────────────────────────────────────────────────────╮
 │ ## Match Reasons                                                                                                               │
-│ The alignment between John Doe's resume and the Python Developer / DevOps Engineer position is evident through multiple        │
-│ factors:                                                                                                                       │
+│ The primary reasons for the alignment between John Doe's resume and the job description for the Python Developer / DevOps      │
+│ Engineer position are as follows:                                                                                              │
 │                                                                                                                                │
-│ - **Key Technical Skills Matching Job Requirements**: John’s expertise in Python, particularly with FastAPI and Flask,         │
-│ directly aligns with the job's requirement for a Python specialist. His experience with SQL databases also corresponds to the  │
-│ need for database expertise.                                                                                                   │
+│ - **Key Technical Skills Matching Job Requirements**: John has strong proficiency in Python, particularly with frameworks such │
+│ as FastAPI and Flask, which directly aligns with the job's requirement for Python specialists. His experience with Git and AWS │
+│ also complements the DevOps aspect of the role.                                                                                │
 │                                                                                                                                │
-│ - **Core Competencies Alignment**: His background in leading development teams indicates strong soft skills and leadership     │
-│ capabilities that are essential for effective collaboration within a remote-first team environment.                            │
+│ - **Core Competencies Alignment**: John has demonstrated leadership and teamwork by leading a team of developers, indicating   │
+│ strong collaboration skills that fit the job's emphasis on working within a cross-functional team.                             │
 │                                                                                                                                │
-│ - **Notable Certifications or Qualifications**: While specific certifications are not mentioned, his educational background in │
-│ Computer Science provides a solid foundation for the technical skills required.                                                │
+│ - **Notable Certifications or Qualifications**: While specific certifications are not mentioned, his degree in Computer        │
+│ Science provides a solid educational foundation relevant to the technical demands of the position.                             │
 │                                                                                                                                │
-│ - **Domain Expertise Relevance**: His current role involves developing web applications, which is relevant to creating backend │
-│ services as described in the job ad. Additionally, experience with AWS aligns with the job’s cloud infrastructure management   │
-│ requirements.                                                                                                                  │
+│ - **Domain Expertise Relevance**: John’s background in developing web applications and managing databases aligns well with the │
+│ job's focus on backend services and database expertise, particularly with SQL, which is relevant to PostgreSQL.                │
 │                                                                                                                                │
-│ - **Overall Technical Background Fit**: John has a well-rounded technical background that includes knowledge of                │
-│ containerization (Docker), which is a key aspect of the position requiring microservices architecture and CI/CD practices.     │
+│ - **Overall Technical Background Fit**: His experience in web application development, cloud infrastructure, and version       │
+│ control systems showcases an overall fit for the technical requirements expected of the role.                                  │
 │                                                                                                                                │
-│ These elements collectively demonstrate John’s suitability for the position by showing he possesses the essential skills and   │
-│ experiences sought by the employer.                                                                                            │
+│ These elements collectively demonstrate that John Doe is a suitable candidate for the position, as they encompass both the     │
+│ technical and soft skills necessary for success in the role.                                                                   │
 │                                                                                                                                │
 │ ## Detailed Match Breakdown                                                                                                    │
 │ **Key Alignment Points**                                                                                                       │
-│ 1. **Primary Technical Skill**: Proficient in Python with experience in FastAPI and Flask.                                     │
-│ 2. **Relevant Certifications**: None listed, but Bachelor's in Computer Science is relevant.                                   │
-│ 3. **Architecture Expertise**: Experience in developing backend services, indicating capability in microservices architecture. │
-│ 4. **Technology Stack Experience**: Familiarity with Git and AWS, which are critical for the role’s requirements.              │
-│ 5. **Specialized Knowledge Areas**: Strong knowledge of SQL databases and some exposure to containerization with Docker.       │
+│ 1. **Primary Technical Skill**: Proficiency in Python, particularly with FastAPI and Flask.                                    │
+│ 2. **Relevant Certifications**: Holds a BS in Computer Science, providing a strong foundation for the technical requirements.  │
+│ 3. **Architecture Expertise**: Experience in leading development teams suggests knowledge of software architecture principles, │
+│ including microservices.                                                                                                       │
+│ 4. **Technology Stack Experience**: Familiarity with AWS and containerization tools like Docker aligns with the job's          │
+│ infrastructure management needs.                                                                                               │
+│ 5. **Specialized Knowledge Areas**: Experience with SQL databases supports the requirement for database expertise in           │
+│ PostgreSQL and other technologies mentioned.                                                                                   │
 │                                                                                                                                │
 │ **Recommendation**                                                                                                             │
-│ Based on the evaluation of John Doe's qualifications and experiences, I recommend him for the Python Developer / DevOps        │
-│ Engineer position. His technical skills in Python and web application development, combined with his leadership experience and │
-│ familiarity with relevant technologies, position him as a strong candidate who can effectively contribute to the team’s goals  │
-│ and deliver high-quality products.                                                                                             │
+│ Based on the technical qualification profile, I recommend moving forward with John Doe's application. His relevant experience, │
+│ technical skills, and collaborative abilities suggest he would be a valuable addition to the team and well-equipped to fulfill │
+│ the responsibilities of the Python Developer / DevOps Engineer position.                                                       │
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
                          Red Flags                         
 ┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Category ┃ Issues                                       ┃
 ┡━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
 │ low      │ • Improvement needed in Language Proficiency │
-│          │ • Improvement needed in Certifications       │
 │ medium   │                                              │
 │ high     │                                              │
 └──────────┴──────────────────────────────────────────────┘
